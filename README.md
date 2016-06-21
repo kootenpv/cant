@@ -22,7 +22,7 @@ E.g.:
     # since
     5.__mul__(3) == 15
 
-Obviously you don't need help with this particular case. But it gets interesting when you throw in your own classes into the mix, or you just know e.g. the module, but not the function that can get the required output; has happened to me with `itertools` (hint: look in [run_tests.py](https://github.com/kootenpv/cant/blob/master/cant/tests/run_tests.py) examples).
+Obviously you don't need help with this particular case. But it gets interesting when you throw in your own classes into the mix, or you just know e.g. the module, but not the function that can get the required output; has happened to me with `itertools` (hint: look in [run_tests.py](https://github.com/kootenpv/cant/blob/master/cant/tests/run_tests.py#L107) examples).
 
 This was a great practice for working with all kinds of arities (0, 1, starred, 1+starred, 2) and scopes (global, modules, objects, builtins).
 
