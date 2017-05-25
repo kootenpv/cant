@@ -42,3 +42,18 @@ def get_object_attrs(obj):
 def get_module_attrs(obj):
     """ Get the potentially callable attributes of object `obj`. """
     return [getattr(obj, x) for x in dir(obj)]
+
+
+def _type_dir(t):
+    class T():
+
+        def __call__(self, x):
+            return getattr(x, t)
+
+        def __repr__(self):
+            return "getattr(__input__, '{}')".format(t)
+    return T()
+
+
+def get_type_dir():
+    return [_type_dir(t) for t in dir(type)]

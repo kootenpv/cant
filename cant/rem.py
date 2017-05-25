@@ -8,7 +8,7 @@ from cant.arity import arity_one, arity_one_self, arity_one_starred, \
     arity_starred, arity_two, arity_zero
 from cant.comparison_functions import safe_equal
 from cant.get_callables import get_builtins, get_module_attrs, get_object_attrs, \
-    protect_global_attrs
+    protect_global_attrs, get_type_dir
 
 
 def loop_over(container, name, inp, expected, eq_fn, args, options):
@@ -30,7 +30,8 @@ def remember(inp, expected, args=None, equality_function=safe_equal,
              globals_dict=None,
              builtins_namespace=False,
              custom_namespace=None,
-             module_namespace=None):
+             module_namespace=None,
+             type_namespace=False):
     """ Main function. Go read the GitHub README for the story. """
     options = []
     # also add option to switch x and args (mirror)
@@ -51,6 +52,10 @@ def remember(inp, expected, args=None, equality_function=safe_equal,
 
     if module_namespace is not None:
         loop_over(get_module_attrs(module_namespace), module_namespace.__name__,
+                  inp, expected, equality_function, args, options)
+
+    if type_namespace:
+        loop_over(get_type_dir(), "type",
                   inp, expected, equality_function, args, options)
 
     sys.stdout = sys.__stdout__
